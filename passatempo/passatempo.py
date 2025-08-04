@@ -35,11 +35,15 @@ lista_var_copia = lista_var
 
 # print(variaveis)
 # while len(lista_var_copia) > 0:
-def dar_bom_por_favor():
+quantidadeFinal = l * c
+def dar_bom_por_favor(quantidade):
     voltaC = 0
     cont1C = 0
     cont2C = 0
     contColunaC = 0
+    quantidadeFinal = quantidade
+    
+    
 
     for i in range(len(lista_var_copia)):
 
@@ -87,21 +91,34 @@ def dar_bom_por_favor():
                     verificacaoColuna = False
                     break  
         
+        for indi in range(len(lista_var_copia)-1):
+            if len(lista_var_copia[indi]) == 1:
+                nome_var_linha = lista_var_copia[indi][0]
+
+                lista_var_copia.remove(lista_var_copia[indi])
+
+                variaveis_achadas.append(nome_var_linha)
+                valor_var = S[cont1C]
+                xs[cont1C] -= valor_var
+                S[cont1C] -= valor_var
+                variaveis[nome_var_linha] = valor_var
 
         if verificacaoLinha == True and indiceLinha != 's':
-            print(verificacaoLinha)
-            valor_var = S[cont1C] / len(lista_var_copia[i])
-            S.remove(S[cont1C])
+            
+            valor_var = S[cont2C+1] / len(lista_var_copia[i])
+            print('VALOR',valor_var)
+            S.remove(S[cont2C+1])
+            print(xs[cont1C])
             xs[cont1C] -= valor_var
             variaveis[nome_var_linha] = valor_var
             lista_var_copia.pop(indiceLinha)
             variaveis_achadas.append(nome_var_linha)
-            # for ind in range(len(lista_var_copia[0])):
-            #     for lista in lista_var_copia:
+            for ind in range(len(lista_var_copia[0])):
+                for lista in lista_var_copia:
 
-            #         if lista[ind] == nome_var_linha:
-            #             S[ind] -= valor_var
-            #             xs[ind] -= valor_var
+                    if lista[ind] == nome_var_linha:
+                        S.remove(S[ind])
+                        xs[ind] -= valor_var
         elif verificacaoColuna and indiceColuna != 's':
 
             valor_var = xs[indiceColuna] / len(lista_var_copia)
@@ -113,37 +130,46 @@ def dar_bom_por_favor():
                 lista_var_copia[linha].pop(indiceColuna)
                 if linha == len(lista_var_copia)-1:
                     xs.remove(xs[indiceColuna])
-            # for ind in range(len(lista_var_copia[0])):
-            #     for lista in lista_var_copia:
+                    break
+            for ind in range(len(lista_var_copia[0])):
+                print(lista_var_copia)
+                for lista in lista_var_copia:
 
-            #         if lista[ind] == nome_var_coluna:
-            #             S[ind] -= valor_var
-            #             xs[ind] -= valor_var
+                    if lista[ind] == nome_var_coluna:
+                        S[ind] -= valor_var
+                        xs.remove(xs[ind])
         voltaC += 1
         for index in range(len(lista_var_copia)):
-            conta = 0
-            for lista in range(len(lista_var_copia[index][0])):
-                print(lista_var_copia)
-                print()
-                print(conta)
-                print(lista)
-                print(lista_var_copia[lista][conta])
-                if lista_var_copia[lista][conta] in variaveis_achadas:
-                    lista_var_copia.remove(lista_var_copia[lista][conta])
-                conta += 1
 
-    if len(lista_var_copia) == 1:
+    
+            for lista in range(len(lista_var_copia[index])-1):
+                
+                if len(lista_var_copia[index]) > 0:
+                    if lista_var_copia[index][0] in variaveis_achadas:
+                        valor = variaveis[lista_var_copia[index][0]]
+                        lista_var_copia[index].remove(lista_var_copia[index][0])
+                        S[lista] -= valor
+                        xs[lista] -= valor
+
+            if quantidadeFinal == 1:
+                nome = lista_var_copia[0][0]
+                print(xs)
+
+                variaveis[nome] = S[0]
+                    
+                print('NOME', nome)
+
+        quantidadeFinal -= 1
+
+
+    if  quantidadeFinal == 0:
+
         return 'deu certo'
     else:
-        for lista in lista_var_copia:
-            print(lista)
-        print()
-        return dar_bom_por_favor()
+        return dar_bom_por_favor(quantidadeFinal)
 ind = 0
 
-dar_bom_por_favor()
+dar_bom_por_favor(quantidadeFinal)
 
-print(S)
-print(xs)
 for k, v in variaveis.items():
     print(k, v)
