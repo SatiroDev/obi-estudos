@@ -105,10 +105,8 @@ def dar_bom_por_favor(quantidade):
 
         if verificacaoLinha == True and indiceLinha != 's':
             
-            valor_var = S[cont2C+1] / len(lista_var_copia[i])
-            print('VALOR',valor_var)
-            S.remove(S[cont2C+1])
-            print(xs[cont1C])
+            valor_var = S[cont2C] / len(lista_var_copia[i])
+            S.remove(S[cont2C])
             xs[cont1C] -= valor_var
             variaveis[nome_var_linha] = valor_var
             lista_var_copia.pop(indiceLinha)
@@ -132,7 +130,6 @@ def dar_bom_por_favor(quantidade):
                     xs.remove(xs[indiceColuna])
                     break
             for ind in range(len(lista_var_copia[0])):
-                print(lista_var_copia)
                 for lista in lista_var_copia:
 
                     if lista[ind] == nome_var_coluna:
@@ -156,8 +153,7 @@ def dar_bom_por_favor(quantidade):
                 print(xs)
 
                 variaveis[nome] = S[0]
-                    
-                print('NOME', nome)
+
 
         quantidadeFinal -= 1
 
