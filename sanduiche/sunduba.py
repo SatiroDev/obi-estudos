@@ -51,24 +51,3 @@ for ind in range(len(subconjuntos)):
 if verificacao:
     print(quantidade)
 
-
-
-
-# Entrada
-# 3 2
-# 2 3
-# 1 2
-
-s = 0
-# Por exemplo, suponha que num determinado dia N é igual a quatro e os ingrediantes são queijo, presunto, goiabada e azeitona, e M é igual a dois: os pares (goiabada, presunto) e (azeitona, goiabada) não podem ser utilizados no mesmo sanduíche. Nesse dia, alguns dos sanduíches que podem ser feitos são:
-
-# presunto, queijo X
-# azeitona 
-# presunto, azeitona, queijo 
-# goiabada, queijo 
-
-# Alguns dos sanduíches que não podem ser feitos são:
-
-# presunto, queijo, goiabada 
-# azeitona, goiabada 
-# goiabada, presunto, azeitona 

@@ -31,19 +31,3 @@ Informações sobre a pontuação
 Para um conjunto de casos de testes valendo 10 pontos, N ≤ 5.
 Para um conjunto de casos de testes valendo outros 40 pontos, N ≤ 10.
 Para um conjunto de casos de testes valendo outros 50 pontos, nenhuma restrição adicional.
-
-
-    for i in range(M):
-        x, y = input().split()
-        X = int(x)
-        Y = int(y)
-        if 1 <= X and X <= N and 1<= X and X < Y:
-            continue
-        else:
-            verificacao = False
-
-
-
-if verificacao:
-    quantidade = (2 ** N) - M - 1
-print(quantidade)
