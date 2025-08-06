@@ -3,9 +3,10 @@ ingredientes = ['queijo', 'presunto', 'goiabada', 'azeitona']
 N = int(n)
 M = int(m)
 
-quantidade = 0
+
 verificacao = True
 lista = []
+subconjuntos = []
 cont = 0
 if 1 <= N and N <= 20 and 0 <= M and M <= 400:
     for i in range(M):
@@ -17,23 +18,38 @@ if 1 <= N and N <= 20 and 0 <= M and M <= 400:
             continue
         else:
             verificacao = False
-    # if verificacao:
-    #     for y in range(1, N+1):
-    #         for z in  range(1, y+1):
-    #             quant = len(lista)
-    #             aux = 0
-    #             while aux < quant:
-    #                 if y in lista[aux] and z in lista[aux]:
-    #                     lista.remove(lista[aux])
-    #                     cont += 1
-    #                 aux += 1
+
+    if verificacao:
+        ind = 1
+        while ind <= N:
+            subconjuntos.append([ind])
+            ind += 1
+        for y in range(1, N+1):
+            for z in  range(y, N+1):
+                sub = [i for i in range(y, z+1) ]
+                if sub not in subconjuntos:
+                    subconjuntos.append(sub)
+        for y in range(1, N+1):
+            for z in  range(1, N+1):
+                sub = [i for i in range(1, z+1, y) ]
+                if sub not in subconjuntos:
+                    subconjuntos.append(sub)
+        
+quantidade = 0
+
+for ind in range(len(subconjuntos)):
+    validacao = True
+    for sub in lista:
+        if sub[0] in subconjuntos[ind] and sub[1] in subconjuntos[ind]:
+            validacao = False
+            break
+    if validacao:
+        quantidade += 1
+                
 
 
-if verificacao and M == 0:
-    quantidade = (2 ** N) - 1
-elif verificacao:
-    quantidade = (2 ** N) - M - 2
-print(quantidade)
+if verificacao:
+    print(quantidade)
 
 
 
